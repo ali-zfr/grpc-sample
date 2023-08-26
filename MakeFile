@@ -1,21 +1,18 @@
 # Build GrpcServer
 build-server:
-    dotnet build src/GrpcServer/GrpcServer.csproj
+	@dotnet build src/GrpcServer/GrpcServer.csproj
 
 # Build GrpcClient
 build-client:
-    dotnet build src/GrpcClient/GrpcClient.csproj
+	@dotnet build src/GrpcClient/GrpcClient.csproj
 
 # Run GrpcServer
 run-server: build-server
-    dotnet run --project src/GrpcServer/GrpcServer.csproj
+	@dotnet run --project src/GrpcServer/GrpcServer.csproj
 
 # Run GrpcClient
 run-client: build-client
-    dotnet run --project src/GrpcClient/GrpcClient.csproj
+	@dotnet run --project src/GrpcClient/GrpcClient.csproj
 
 # Build both projects
 build: build-server build-client
-
-# Run both projects sequentially
-run: run-server run-client
