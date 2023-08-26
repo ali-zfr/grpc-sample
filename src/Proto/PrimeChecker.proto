@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service PrimeChecker {
-  rpc IsPrime (PrimeNumberRequest) returns (PrimeNumberResponse);
+  rpc IsPrime (stream PrimeNumberRequest) returns (stream PrimeNumberResponse);
 }
 
 message PrimeNumberRequest {
@@ -12,4 +12,6 @@ message PrimeNumberRequest {
 
 message PrimeNumberResponse {
   bool isPrime = 1;
+  int64 id = 2;
+  string message = 3;
 }
