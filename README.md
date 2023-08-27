@@ -25,4 +25,16 @@ This is a client server application in .net that uses grpc for communication.
    - But the issue was I had only one method that was sending requests how would I resend requests?
    - In order to address that issue, rather than sending directly messages inside send message method I created a thread safe queue in which I will add new messages to send and messages to retry
    - Now send message method deques messages from queue and sends requests to the server
-   - Then I created a saperate thread where I will check for messages in dictionary where message retry interval i.e 15secs have been passed, exponentially grow their retry interval and queue them again 
+   - Then I created a saperate thread where I will check for messages in dictionary where message retry interval i.e 15secs have been passed, exponentially grow their retry interval and queue them again
+  
+
+## Scaling application to hundreds of servers
+1. Create another microservice for PrimeStatsService
+2. Horizontal Autoscaling Primechecker service
+3. Using Load balancers: Place a load balancer in front of your gRPC servers to distribute incoming requests across multiple instances of your service.
+4. Using Azure CDN: Using Azure CDN clients can request servers that are located nearest to them
+
+## Testing server-side code with integration testing
+1. Basic Functionality: Test the basic "happy path" where everything is supposed to work.
+2. Edge Cases: Test with invalid input, extremely large/small numbers, or other unusual situations to ensure your server can handle them like stop client forcefully.
+3. Concurrency: Test with multiple clients making simultaneous requests to make sure the server can handle it.
