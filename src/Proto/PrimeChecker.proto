@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service PrimeChecker {
+  rpc IsPrime (stream PrimeNumberRequest) returns (stream PrimeNumberResponse);
+}
+
+message PrimeNumberRequest {
+ int64 id = 1; // must be unique
+ int64 timestamp = 2; // unix epoch
+ int64 number = 3; // prime number
+}
+
+message PrimeNumberResponse {
+  bool isPrime = 1;
+  int64 id = 2;
+  string message = 3;
+}
